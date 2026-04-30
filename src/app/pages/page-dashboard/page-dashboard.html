@@ -1,0 +1,90 @@
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">
+        <i class="fas fa-boxes"></i>
+      </div>
+      <h4>Gestion de stock</h4>
+      <small>By Abdo</small>
+    </div>
+
+    <!-- MENU DYNAMIQUE -->
+    <app-menu></app-menu>
+
+
+    <!--<nav class="sidebar-nav">
+      <div class="nav-section">Principal</div>
+      <a class="nav-item active" [routerLink]="['/dashboard']" routerLinkActive="active">
+        <i class="fas fa-th-large"></i> Tableau de bord
+      </a>
+      <a class="nav-item" [routerLink]="['/articles']" routerLinkActive="active">
+        <i class="fas fa-shopping-bag"></i> Articles
+        <span class="nav-badge">8</span>
+      </a>
+      <a class="nav-item" [routerLink]="['/produits']" routerLinkActive="active">
+        <i class="fas fa-box"></i> Clients
+        <span class="nav-badge">142</span>
+
+      </a>
+
+      <a class="nav-item" [routerLink]="['/fournisseurs']" routerLinkActive="active">
+        <i class="fas fa-users"></i> Fournisseurs
+      </a>
+
+      <div class="nav-section">Rapports</div>
+      <a class="nav-item" [routerLink]="['/statistiques']" routerLinkActive="active">
+        <i class="fas fa-chart-bar"></i> Statistiques
+      </a>
+      <a class="nav-item" [routerLink]="['/historique']" routerLinkActive="active">
+        <i class="fas fa-history"></i> Historique
+      </a>
+    </nav>-->
+
+    <div class="sidebar-footer">
+      <div class="user-row">
+        <div class="avatar">AB</div>
+        <div class="user-info">
+          <p>Abdo</p>
+          <span>Administrateur</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-area">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="breadcrumb">
+          <span>Accueil</span>
+          <i class="fas fa-chevron-right"></i>
+          <b>Tableau de bord</b>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Rechercher...">
+        </div>
+        <button class="icon-btn"><i class="fas fa-bell"></i></button>
+        <button class="icon-btn"><i class="fas fa-cog"></i></button>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <span>Gestion de stock — By Abdo</span>
+      <span>v1.0.0 · 2025</span>
+    </footer>
+
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<nav class="sidebar-nav">
+
+  <div class="nav-section">Principal</div>
+
+  <ng-container *ngFor="let menu of menuProperties">
+
+    <!-- MENU PARENT -->
+    <div class="nav-item"
+         (click)="onMenuClick(menu)"
+         [class.active]="menu.active">
+
+      <i [class]="menu.icon"></i>
+      {{ menu.titre }}
+ 
+      <i *ngIf="menu.sousMenu"
+         class="fas fa-chevron-down"
+         [class.rotate]="menu.expanded"
+         style="margin-left:auto"></i>
+
+    </div>
+
+    <!-- SOUS MENU -->
+    <div *ngIf="menu.sousMenu && menu.expanded"
+         style="padding-left: 15px;">
+
+      <a *ngFor="let sub of menu.sousMenu"
+         class="nav-item"
+         (click)="navigate(sub)"
+         [routerLink]="sub.url"
+         routerLinkActive="active">
+
+        <i [class]="sub.icon"></i>
+        {{ sub.titre }}
+
+      </a>
+
+    </div>
+
+  </ng-container>
+
+</nav>
