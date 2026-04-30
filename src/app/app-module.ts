@@ -10,9 +10,10 @@ import { PageDashboard } from './pages/page-dashboard/page-dashboard';
 import { PageStatistiques } from './pages/page-statistiques/page-statistiques';
 import { Menu } from './composants/menu/menu';
 import { CommonModule } from '@angular/common';
+import { Header } from './composants/header/header';
 
 @NgModule({
-  declarations: [App, PageLogin, PageInscription, PageDashboard, PageStatistiques, Menu],
+  declarations: [App, PageLogin, PageInscription, PageDashboard, PageStatistiques, Menu, Header],
   imports: [BrowserModule, AppRoutingModule, CommonModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
