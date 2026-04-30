@@ -1,0 +1,144 @@
+/*.my-container{*/
+/*  margin-top: 200px;*/
+/*  max-width: 500px;*/
+/*}*/
+
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.login-header {
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.login-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 18px;
+  color: #888;
+}
+
+.login-header h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 4px;
+}
+
+.login-header p {
+  font-size: 13px;
+  color: #888;
+  margin: 0;
+}
+
+.login-body {
+  padding: 1.75rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field-group label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 14px;
+}
+
+.input-wrap .form-control {
+  padding-left: 36px;
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+}
+
+.input-wrap .form-control:focus {
+  background: #fff;
+  border-color: #aaa;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+}
+
+.forgot-wrap {
+  text-align: right;
+}
+
+.forgot-wrap a {
+  font-size: 12px;
+  color: #888;
+  text-decoration: none;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 11px;
+  font-size: 14px;
+  font-weight: 500;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-login:hover { opacity: 0.85; }
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #f0f0f0;
+}
+
+.register-row {
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+}
+
+.register-row a {
+  color: #111;
+  font-weight: 500;
+  text-decoration: none;
+}

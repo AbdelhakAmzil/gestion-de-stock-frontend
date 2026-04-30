@@ -1,0 +1,47 @@
+<div class="login-wrapper">
+  <div class="login-card">
+
+    <div class="login-header">
+      <div class="login-icon">
+        <i class="fas fa-user"></i>
+      </div>
+      <h3>Se connecter</h3>
+      <p>Bienvenue, entrez vos identifiants</p>
+    </div>
+
+    <div class="login-body">
+
+      <div class="field-group">
+        <label>Adresse e-mail</label>
+        <div class="input-wrap">
+          <i class="fas fa-envelope"></i>
+          <input type="email" class="form-control" placeholder="exemple@email.com">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Mot de passe</label>
+        <div class="input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" class="form-control" placeholder="••••••••">
+        </div>
+      </div>
+
+      <div class="forgot-wrap">
+        <a href="#">Mot de passe oublié ?</a>
+      </div>
+
+      <button type="button" class="btn-login">
+        <i class="fas fa-check"></i> Se connecter
+      </button>
+
+      <div class="divider">ou</div>
+
+      <div class="register-row">
+        Pas encore de compte ?
+        <a [routerLink]="['/inscrire']" class="btn-link">S'inscrire</a>
+      </div>
+
+    </div>
+  </div>
+</div>
