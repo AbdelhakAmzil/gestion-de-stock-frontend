@@ -14,13 +14,13 @@ export class Menu implements OnInit {
       id: '1',
       titre: 'Tableau de bord',
       icon: 'fas fa-chart-line',
-      url: '',
+      url: 'dashboard',
       sousMenu: [
         {
           id: '11',
           titre: "Vue d'ensemble",
           icon: 'fas fa-chart-pie',
-          url: '',
+          url: 'dashboard',
         },
         {
           id: '12',
@@ -112,7 +112,6 @@ export class Menu implements OnInit {
     },
   ];
 
-  private lastSelectedMenu: MyMenu | undefined;
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
@@ -121,23 +120,8 @@ export class Menu implements OnInit {
     // 👉 Si menu a sous-menu → ouvrir / fermer
     if (menu.sousMenu && menu.sousMenu.length > 0) {
       menu.expanded = !menu.expanded;
-      return;
+    } else {
+      this.router.navigate([menu.url]);
     }
-
-    // 👉 Sinon navigation normale
-    this.navigate(menu);
-  }
-
-  navigate(menu: MyMenu): void {
-    if (!menu.url) return;
-
-    if (this.lastSelectedMenu) {
-      this.lastSelectedMenu.active = false;
-    }
-
-    menu.active = true;
-    this.lastSelectedMenu = menu;
-
-    this.router.navigate([menu.url]);
   }
 }

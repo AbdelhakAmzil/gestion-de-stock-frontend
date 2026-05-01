@@ -14,6 +14,7 @@ body { background: #f5f5f5; font-family: inherit; }
   background: #fff;
   border-right: 1px solid #ebebeb;
   display: flex; flex-direction: column;
+  height: 100vh;
 }
 .sidebar-brand { padding: 1.25rem; border-bottom: 1px solid #ebebeb; }
 .brand-icon {
@@ -40,10 +41,11 @@ body { background: #f5f5f5; font-family: inherit; }
   background: #ebebeb; color: #666;
   padding: 1px 6px; border-radius: 99px;
 }
-.sidebar-footer { padding: 0.75rem; border-top: 1px solid #ebebeb; }
+.sidebar-footer { padding: 0.75rem; border-top: 1px solid #ebebeb; margin-top: auto;}
 .user-row {
   display: flex; align-items: center; gap: 10px;
   padding: 8px 10px; border-radius: 8px; cursor: pointer;
+
 }
 .user-row:hover { background: #f5f5f5; }
 .avatar {

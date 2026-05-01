@@ -11,9 +11,21 @@ import { PageStatistiques } from './pages/page-statistiques/page-statistiques';
 import { Menu } from './composants/menu/menu';
 import { CommonModule } from '@angular/common';
 import { Header } from './composants/header/header';
+import { PageArticles } from './pages/articles/page-articles/page-articles';
+import { DetailsArticles } from './composants/details-articles/details-articles';
 
 @NgModule({
-  declarations: [App, PageLogin, PageInscription, PageDashboard, PageStatistiques, Menu, Header],
+  declarations: [
+    App,
+    PageLogin,
+    PageInscription,
+    PageDashboard,
+    PageStatistiques,
+    Menu,
+    Header,
+    PageArticles,
+    DetailsArticles,
+  ],
   imports: [BrowserModule, AppRoutingModule, CommonModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],

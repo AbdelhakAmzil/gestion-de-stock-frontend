@@ -7,27 +7,27 @@
     <!-- MENU PARENT -->
     <div class="nav-item"
          (click)="onMenuClick(menu)"
-         [class.active]="menu.active">
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: false }">
 
       <i [class]="menu.icon"></i>
       {{ menu.titre }}
 
-      <i *ngIf="menu.sousMenu"
+      <i *ngIf="menu.sousMenu?.length"
          class="fas fa-chevron-down"
          [class.rotate]="menu.expanded"
-         style="margin-left:auto"></i>
+         style="margin-left:auto">
+      </i>
 
     </div>
 
     <!-- SOUS MENU -->
-    <div *ngIf="menu.sousMenu && menu.expanded"
-         style="padding-left: 15px;">
-
+    <div *ngIf="menu.sousMenu && menu.expanded" style="padding-left: 15px;">
       <a *ngFor="let sub of menu.sousMenu"
          class="nav-item"
-         (click)="navigate(sub)"
-         [routerLink]="sub.url"
-         routerLinkActive="active">
+         [routerLink]="[sub.url]"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: true }">
 
         <i [class]="sub.icon"></i>
         {{ sub.titre }}
@@ -39,3 +39,32 @@
   </ng-container>
 
 </nav>
+
+
+<!--<nav class="sidebar-nav">
+      <div class="nav-section">Principal</div>
+      <a class="nav-item active" [routerLink]="['/dashboard']" routerLinkActive="active">
+        <i class="fas fa-th-large"></i> Tableau de bord
+      </a>
+      <a class="nav-item" [routerLink]="['/articles']" routerLinkActive="active">
+        <i class="fas fa-shopping-bag"></i> Articles
+        <span class="nav-badge">8</span>
+      </a>
+      <a class="nav-item" [routerLink]="['/produits']" routerLinkActive="active">
+        <i class="fas fa-box"></i> Clients
+        <span class="nav-badge">142</span>
+
+      </a>
+
+      <a class="nav-item" [routerLink]="['/fournisseurs']" routerLinkActive="active">
+        <i class="fas fa-users"></i> Fournisseurs
+      </a>
+
+      <div class="nav-section">Rapports</div>
+      <a class="nav-item" [routerLink]="['/statistiques']" routerLinkActive="active">
+        <i class="fas fa-chart-bar"></i> Statistiques
+      </a>
+      <a class="nav-item" [routerLink]="['/historique']" routerLinkActive="active">
+        <i class="fas fa-history"></i> Historique
+      </a>
+    </nav>-->
