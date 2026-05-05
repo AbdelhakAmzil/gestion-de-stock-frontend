@@ -1,0 +1,104 @@
+.article-card {
+  display: flex;
+  align-items: stretch;
+  background: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  transition: border-color .15s;
+}
+.article-card:hover { border-color: #ccc; }
+
+.art-img {
+  width: 100px; min-width: 100px;
+  display: flex; align-items: center; justify-content: center;
+  background: #fafafa;
+  border-right: 1px solid #ebebeb;
+  padding: 12px;
+}
+.art-img img { width: 72px; height: 72px; object-fit: contain; border-radius: 8px; }
+
+.art-details {
+  flex: 1; padding: 14px 16px;
+  border-right: 1px solid #ebebeb;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.art-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; color: #999; margin-bottom: 2px; }
+.art-code  { font-size: 14px; font-weight: 500; color: #111; }
+.art-desig { font-size: 12px; color: #666; }
+.price-row { display: flex; gap: 16px; }
+.price-item { display: flex; flex-direction: column; }
+.price-tag  { font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: #999; }
+.price-val  { font-size: 13px; font-weight: 500; color: #111; }
+
+.art-cat {
+  width: 180px; padding: 14px 16px;
+  border-right: 1px solid #ebebeb;
+  display: flex; flex-direction: column; justify-content: center; gap: 6px;
+}
+.cat-name  { font-size: 13px; font-weight: 500; color: #111; }
+.cat-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #f5f5f5; border: 1px solid #ebebeb;
+  border-radius: 99px; padding: 3px 10px;
+  font-size: 11px; color: #666; width: fit-content;
+}
+.cat-badge i { font-size: 10px; color: #378ADD; }
+
+.art-actions {
+  width: 150px; padding: 14px 12px;
+  display: flex; flex-direction: column; justify-content: center; gap: 6px;
+}
+.btn-action {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 12px; border-radius: 8px; font-size: 12px; font-weight: 500;
+  border: 1px solid #ebebeb; background: transparent; cursor: pointer;
+  color: #666; transition: background .12s; width: 100%;
+}
+.btn-action:hover { background: #f5f5f5; color: #111; }
+.btn-action.danger { color: #A32D2D; border-color: transparent; }
+.btn-action.danger:hover { background: #FCEBEB; }
+
+/* MODAL */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.3); z-index: 1000;
+  align-items: center; justify-content: center;
+}
+.modal-overlay.show { display: flex; }
+.modal-box {
+  background: #fff; border-radius: 16px;
+  border: 1px solid #ebebeb; width: 100%; max-width: 380px; overflow: hidden;
+}
+.modal-head {
+  padding: 1.25rem 1.25rem 0;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.modal-head h5 { font-size: 15px; font-weight: 500; }
+.modal-close {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1px solid #ebebeb; background: transparent;
+  cursor: pointer; font-size: 13px; color: #666;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-body { padding: 1rem 1.25rem; }
+.modal-warn {
+  display: flex; align-items: center; gap: 10px;
+  background: #FCEBEB; border: 1px solid #F7C1C1;
+  border-radius: 8px; padding: 10px 14px;
+  font-size: 13px; color: #A32D2D;
+}
+.modal-foot {
+  padding: .75rem 1.25rem 1.25rem;
+  display: flex; gap: 8px; justify-content: flex-end;
+}
+.btn-cancel {
+  padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 500;
+  border: 1px solid #ddd; background: transparent; cursor: pointer; color: #666;
+}
+.btn-delete {
+  padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 500;
+  border: none; background: #A32D2D; color: #fff; cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+}

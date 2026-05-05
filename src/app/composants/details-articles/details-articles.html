@@ -1,86 +1,77 @@
-<div class="row mb-1 mr-0 custom-border">
-  <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 ">
-    <img [src]="" width="100px" height="100px">
+<div class="article-card">
+
+  <!-- Image -->
+  <div class="art-img">
+    <img [src]="   'assets/product.png'"
+         (error)="onImgError($event)"
+         alt="article">
   </div>
 
-  <!--  Details article-->
-  <div class="col-md-5 custom-border-right mb-1 mt-1 ">
-    <div class="col">
-      <div class="row">
-        <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-        <div class="col-md-11">code article</div>
+  <!-- Détails -->
+  <div class="art-details">
+    <div>
+      <div class="art-label">Code · Désignation</div>
+      <div class="art-code">{{ "articleDto.code" }}</div>
+      <div class="art-desig">{{ "articleDto.designation" }}</div>
+    </div>
+    <div class="price-row">
+      <div class="price-item">
+        <span class="price-tag">Prix HT</span>
+        <span class="price-val">{{ "articleDto.prixUnitaireHt "}} €</span>
       </div>
-      <div class="row">
-        <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-        <div class="col-md-11">designation</div>
-      </div>
-      <div class="row">
-        <div class="col-md-1"><i class="fas fa-dollar-sign blue-color"></i></div>
-        <div class="col-md-11">prixUnitaireHt €</div>
-      </div>
-      <div class="row">
-        <div class="col-md-1"><i class="fas fa-dollar-sign blue-color"></i></div>
-        <div class="col-md-11">prixUnitaireTtc €</div>
+      <div class="price-item">
+        <span class="price-tag">Prix TTC</span>
+        <span class="price-val">{{ "articleDto.prixUnitaireTtc" }} €</span>
       </div>
     </div>
   </div>
 
-  <!--  details categorie-->
-  <div class="col-md-3 custom-border-right mb-1 mt-1 ">
-    <div class="row">
-      <div class="col-md-2">
-        <i class="fas fa-flag-checkered blue-color"></i>
-      </div>
-      <div class="col-md-10">
-        <div class="row">
-          <div class="col-md-12">category?.code</div>
-          <div class="col-md-12">category?.designation</div>
-        </div>
-      </div>
+  <!-- Catégorie -->
+  <div class="art-cat">
+    <div class="art-label">Catégorie</div>
+    <div class="cat-name">{{ "articleDto.category?.designation" }}</div>
+    <div class="cat-badge">
+      <i class="fas fa-tag"></i>
+      {{ "articleDto.category?.code" }}
     </div>
   </div>
 
-  <!--  boutons action-->
-  <div class="col-md-3 mb-1 mt-1 ">
-    <div class="row">
-      <div class="col-md-4">
-        <button type="button" class="btn btn-link" >
-          <i class="fas fa-pencil-alt"></i>&nbsp;Modifier
-        </button>
-      </div>
-      <div class="col-md-4">
-        <button type="button" class="btn btn-link text-danger" data-toggle="modal" >
-          <i class="fas fa-trash-alt"></i>&nbsp;Supprimer
-        </button>
-      </div>
-      <div class="col-md-4">
-        <button type="button" class="btn btn-link ">
-          <i class="far fa-list-alt"></i>&nbsp;Details
-        </button>
+  <!-- Actions -->
+  <div class="art-actions">
+    <button class="btn-action" (click)="modifierArticle()">
+      <i class="fas fa-pencil-alt"></i> Modifier
+    </button>
+    <button class="btn-action danger" (click)="showModal = true">
+      <i class="fas fa-trash-alt"></i> Supprimer
+    </button>
+    <button class="btn-action">
+      <i class="fas fa-eye"></i> Détails
+    </button>
+  </div>
+</div>
+
+<!-- MODAL SUPPRESSION -->
+<div class="modal-overlay" [class.show]="showModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h5>Confirmation de suppression</h5>
+      <button class="modal-close" (click)="showModal = false">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-warn">
+        <i class="fas fa-exclamation-triangle"></i>
+        Êtes-vous sûr de vouloir supprimer
+        <strong>{{ "articleDto.designation "}}</strong> ?
+        Cette action est irréversible.
       </div>
     </div>
-  </div>
-  <!-- Modal -->
-  <div class="modal fade" id="id" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-       aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Confirmation</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Etes vous-sur de vouloir supprimer cet article?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            <i class="fas fa-ban"></i>&nbsp;Annuler</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal" >
-            <i class="fas fa-trash-alt"></i>&nbsp;Supprimer</button>
-        </div>
-      </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" (click)="showModal = false">
+        <i class="fas fa-ban"></i> Annuler
+      </button>
+      <button class="btn-delete" (click)="confirmerEtSupprimerArticle()">
+        <i class="fas fa-trash-alt"></i> Supprimer
+      </button>
     </div>
   </div>
 </div>
