@@ -9,9 +9,8 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthenticationResponse } from '../../../gs-api/src/models/authentication-response';
-import { LoaderService } from '../../composants/loader/service/loader.service';
+import { LoaderService } from '../../composants/loader/loader/service/loader.service';
 import { tap } from 'rxjs/operators';
-import { error } from 'ng-packagr/lib/util/log';
 
 @Injectable({
   providedIn: 'root',

@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { ArticleService } from '../../services/article/article.service';
 
 @Component({
-  selector: 'app-detail-article',
-  templateUrl: './detail-article.component.html',
-  styleUrls: ['./detail-article.component.scss'],
+  selector: 'app-details-article',
+  standalone: false,
+  templateUrl: './details-articles.html',
+  styleUrls: ['./details-articles.css'],
 })
-export class DetailArticleComponent implements OnInit {
+export class DetailsArticles implements OnInit {
   @Input()
   articleDto: ArticleDto = {};
   @Output()
