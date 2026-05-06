@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { PageLogin } from './pages/page-login/page-login';
 import { PageInscription } from './pages/page-inscription/page-inscription';
-import { RouterModule } from '@angular/router';
 import { PageDashboard } from './pages/page-dashboard/page-dashboard';
 import { PageStatistiques } from './pages/page-statistiques/page-statistiques';
 import { Menu } from './composants/menu/menu';
@@ -25,6 +24,17 @@ import { NouveauCltFrs } from './composants/nouveau-clt-frs/nouveau-clt-frs';
 import { FormsModule } from '@angular/forms';
 import { NouveauCmdCltFrs } from './composants/nouveau-cmd-clt-frs/nouveau-cmd-clt-frs';
 import { Pagination } from './composants/pagination/pagination';
+import { NouvelArticle } from './pages/articles/nouvel-article/nouvel-article';
+import { NouvelleCategory } from './pages/categories/nouvelle-category/nouvelle-category';
+import { PageCategories } from './pages/categories/page-categories/page-categories';
+import { PageClient } from './pages/client/page-client/page-client';
+import { PageFournisseur } from './pages/fournisseur/page-fournisseur/page-fournisseur';
+import { PageMvtstk } from './pages/mvtstk/page-mvtstk/page-mvtstk';
+import { PageCmdCltFrs } from './pages/page-cmd-clt-frs/page-cmd-clt-frs';
+import { ChangerMotDePasse } from './pages/profil/changer-mot-de-passe/changer-mot-de-passe';
+import { PageProfil } from './pages/profil/page-profil/page-profil';
+import { NouvelUtilisateur } from './pages/utilisateur/nouvel-utilisateur/nouvel-utilisateur';
+import { PageUtilisateur } from './pages/utilisateur/page-utilisateur/page-utilisateur';
 
 @NgModule({
   declarations: [
@@ -38,14 +48,10 @@ import { Pagination } from './composants/pagination/pagination';
     PageArticles,
     Loader,
     NouveauCmdCltFrs,
-    Pagination,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CommonModule,
-    FormsModule,
     DetailsArticles,
+    Pagination,
+    NouvelArticle,
+    NouvelleCategory,
     BouttonAction,
     DetailCltFrs,
     DetailCmdCltFrs,
@@ -53,8 +59,18 @@ import { Pagination } from './composants/pagination/pagination';
     DetailMvtStkArticle,
     DetailMvtStk,
     DetailUtilisateur,
+    PageCategories,
+    PageClient,
+    PageFournisseur,
+    PageMvtstk,
+    PageCmdCltFrs,
     NouveauCltFrs,
+    ChangerMotDePasse,
+    PageProfil,
+    NouvelUtilisateur,
+    PageUtilisateur,
   ],
+  imports: [BrowserModule, AppRoutingModule, CommonModule, FormsModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
 })

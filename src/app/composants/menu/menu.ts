@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MyMenu } from './my-menu';
 import { Router } from '@angular/router';
-import { MyMenu } from './MyMenu';
 
 @Component({
   selector: 'app-menu',
   standalone: false,
   templateUrl: './menu.html',
-  styleUrl: './menu.css',
+  styleUrls: ['./menu.css'],
 })
 export class Menu implements OnInit {
   public menuProperties: Array<MyMenu> = [
@@ -14,13 +14,13 @@ export class Menu implements OnInit {
       id: '1',
       titre: 'Tableau de bord',
       icon: 'fas fa-chart-line',
-      url: 'dashboard',
+      url: '',
       sousMenu: [
         {
           id: '11',
           titre: "Vue d'ensemble",
           icon: 'fas fa-chart-pie',
-          url: 'dashboard',
+          url: '',
         },
         {
           id: '12',
@@ -112,16 +112,27 @@ export class Menu implements OnInit {
     },
   ];
 
+  private lastSelectedMenu: MyMenu | undefined;
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   onMenuClick(menu: MyMenu): void {
-    // 👉 Si menu a sous-menu → ouvrir / fermer
     if (menu.sousMenu && menu.sousMenu.length > 0) {
       menu.expanded = !menu.expanded;
     } else {
-      this.router.navigate([menu.url]);
+      this.navigate(menu);
     }
+  }
+
+  navigate(menu: MyMenu): void {
+    if (!menu.url) return;
+    if (this.lastSelectedMenu) {
+      this.lastSelectedMenu.active = false;
+    }
+    menu.active = true;
+    this.lastSelectedMenu = menu;
+    this.router.navigate([menu.url]);
   }
 }

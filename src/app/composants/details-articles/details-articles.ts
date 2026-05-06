@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ArticleService } from '../../services/article/article.service';
 
 @Component({
-  selector: 'app-details-article',
+  selector: 'app-details-articles',
   standalone: false,
   templateUrl: './details-articles.html',
   styleUrls: ['./details-articles.css'],

@@ -11,8 +11,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-nouveau-clt-frs',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+  standalone: false,
   templateUrl: './nouveau-clt-frs.html',
   styleUrls: ['./nouveau-clt-frs.css'],
 })

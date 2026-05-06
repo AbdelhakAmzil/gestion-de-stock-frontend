@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { PageMvtstk } from './page-mvtstk';
+
+describe('PageMvtstk', () => {
+  let component: PageMvtstk;
+  let fixture: ComponentFixture<PageMvtstk>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [PageMvtstk],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(PageMvtstk);
+    component = fixture.componentInstance;
+    await fixture.whenStable();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

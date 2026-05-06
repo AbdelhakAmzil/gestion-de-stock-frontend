@@ -1,70 +1,27 @@
-<nav class="sidebar-nav">
-
-  <div class="nav-section">Principal</div>
-
-  <ng-container *ngFor="let menu of menuProperties">
-
-    <!-- MENU PARENT -->
-    <div class="nav-item"
-         (click)="onMenuClick(menu)"
-         routerLinkActive="active"
-         [routerLinkActiveOptions]="{ exact: false }">
-
-      <i [class]="menu.icon"></i>
-      {{ menu.titre }}
-
-      <i *ngIf="menu.sousMenu?.length"
-         class="fas fa-chevron-down"
-         [class.rotate]="menu.expanded"
-         style="margin-left:auto">
-      </i>
-
+<div class="accordion" id="appMenuAccordion">
+  <div class="card" *ngFor="let menu of menuProperties">
+    <div class="card-header" id="menu{{menu.id}}">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                [attr.data-target]="'#collapse' + menu.id" aria-expanded="true" aria-controls="collapseOne">
+          <i class="{{menu.icon}}"></i>&nbsp;
+          {{menu.titre}}
+        </button>
+      </h2>
     </div>
 
-    <!-- SOUS MENU -->
-    <div *ngIf="menu.sousMenu && menu.expanded" style="padding-left: 15px;">
-      <a *ngFor="let sub of menu.sousMenu"
-         class="nav-item"
-         [routerLink]="[sub.url]"
-         routerLinkActive="active"
-         [routerLinkActiveOptions]="{ exact: true }">
+    <div id="collapse{{menu.id}}" class="collapse" [attr.aria-labelledby]="'menu' + menu.id" data-parent="#appMenuAccordion">
 
-        <i [class]="sub.icon"></i>
-        {{ sub.titre }}
-
-      </a>
-
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let sousMenu of menu.sousMenu" [ngClass]="{'text-white bg-primary': sousMenu.active, '': !sousMenu.active}">
+            <a href="javascript:void(0);" (click)="navigate(sousMenu)" style="color: inherit;">
+              <i class="{{sousMenu.icon}}"></i>&nbsp;
+              {{sousMenu.titre}}
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-
-  </ng-container>
-
-</nav>
-
-
-<!--<nav class="sidebar-nav">
-      <div class="nav-section">Principal</div>
-      <a class="nav-item active" [routerLink]="['/dashboard']" routerLinkActive="active">
-        <i class="fas fa-th-large"></i> Tableau de bord
-      </a>
-      <a class="nav-item" [routerLink]="['/articles']" routerLinkActive="active">
-        <i class="fas fa-shopping-bag"></i> Articles
-        <span class="nav-badge">8</span>
-      </a>
-      <a class="nav-item" [routerLink]="['/produits']" routerLinkActive="active">
-        <i class="fas fa-box"></i> Clients
-        <span class="nav-badge">142</span>
-
-      </a>
-
-      <a class="nav-item" [routerLink]="['/fournisseurs']" routerLinkActive="active">
-        <i class="fas fa-users"></i> Fournisseurs
-      </a>
-
-      <div class="nav-section">Rapports</div>
-      <a class="nav-item" [routerLink]="['/statistiques']" routerLinkActive="active">
-        <i class="fas fa-chart-bar"></i> Statistiques
-      </a>
-      <a class="nav-item" [routerLink]="['/historique']" routerLinkActive="active">
-        <i class="fas fa-history"></i> Historique
-      </a>
-    </nav>-->
+  </div>
+</div>

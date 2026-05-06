@@ -4,26 +4,25 @@
       <h1>Liste des articles</h1>
     </div>
     <div class="col-md-4 text-right">
-      les buttons
+      <app-boutton-action
+        (clickEvent)="nouvelArticle()"
+      ></app-boutton-action>
     </div>
-    <div class="alert alert-danger" >
-      Message
+    <div class="alert alert-danger" *ngIf="errorMsg">
+      {{ errorMsg }}
     </div>
   </div>
   <div class="col m-3">
     <app-details-articles
-    >
-    </app-details-articles>
-    <app-details-articles
-    >
-    </app-details-articles>
-    <app-details-articles
+      *ngFor="let article of listArticle"
+      [articleDto]="article"
+      (suppressionResult)="handleSuppression($event)"
     >
     </app-details-articles>
   </div>
-  <div class="row mb-3">
+  <div class="row mb-3" *ngIf="listArticle.length">
     <div class=" col-md-12 text-center">
-      pagination
+      <app-pagination></app-pagination>
     </div>
   </div>
 

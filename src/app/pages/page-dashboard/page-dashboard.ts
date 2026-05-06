@@ -6,4 +6,8 @@ import { Component } from '@angular/core';
   templateUrl: './page-dashboard.html',
   styleUrl: './page-dashboard.css',
 })
-export class PageDashboard {}
+export class PageDashboard {
+  constructor() {}
+
+  ngOnInit(): void {}
+}

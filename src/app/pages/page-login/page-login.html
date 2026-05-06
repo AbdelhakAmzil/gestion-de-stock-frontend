@@ -1,47 +1,24 @@
-<div class="login-wrapper">
-  <div class="login-card">
-
-    <div class="login-header">
-      <div class="login-icon">
-        <i class="fas fa-user"></i>
-      </div>
+<div class="container my-container">
+  <div class="card justify-content-md-center">
+    <div class="card-header text-center">
       <h3>Se connecter</h3>
-      <p>Bienvenue, entrez vos identifiants</p>
     </div>
-
-    <div class="login-body">
-
-      <div class="field-group">
-        <label>Adresse e-mail</label>
-        <div class="input-wrap">
-          <i class="fas fa-envelope"></i>
-          <input type="email" class="form-control" placeholder="exemple@email.com">
-        </div>
+    <div class="card-body">
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        {{errorMessage}}
       </div>
-
-      <div class="field-group">
-        <label>Mot de passe</label>
-        <div class="input-wrap">
-          <i class="fas fa-lock"></i>
-          <input type="password" class="form-control" placeholder="••••••••">
-        </div>
+      <div class="mb-3">
+        <input type="email" class="form-control" placeholder="E-mail" [(ngModel)] = "authenticationRequest.login">
       </div>
-
-      <div class="forgot-wrap">
-        <a href="#">Mot de passe oublié ?</a>
+      <div class="mb-3">
+        <input type="password" class="form-control" placeholder="Mot de passe" [(ngModel)] = "authenticationRequest.password">
       </div>
-
-      <button type="button" class="btn-login">
-        <i class="fas fa-check"></i> Se connecter
-      </button>
-
-      <div class="divider">ou</div>
-
-      <div class="register-row">
-        Pas encore de compte ?
-        <a [routerLink]="['/inscrire']" class="btn-link">S'inscrire</a>
+      <div class="mb-3 d-flex justify-content-between">
+        <a [routerLink]="['/inscrire']" class="btn btn-link">S'inscrire</a>
+        <button type="button" class="btn btn-primary" (click)="login()">
+          <i class="fas fa-check"></i>&nbsp;Se connecter
+        </button>
       </div>
-
     </div>
   </div>
 </div>

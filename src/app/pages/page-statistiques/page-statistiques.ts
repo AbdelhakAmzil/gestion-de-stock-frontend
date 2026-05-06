@@ -6,4 +6,8 @@ import { Component } from '@angular/core';
   templateUrl: './page-statistiques.html',
   styleUrl: './page-statistiques.css',
 })
-export class PageStatistiques {}
+export class PageStatistiques {
+  constructor() {}
+
+  ngOnInit(): void {}
+}
