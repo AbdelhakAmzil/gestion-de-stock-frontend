@@ -1,76 +1,161 @@
+/* ============================================
+   MENU COMPONENT - Modern Accordion Navigation
+   ============================================ */
 
-/* SIDEBAR */
-.sidebar {
-  width: 220px; min-width: 220px;
-  background: #fff;
-  border-right: 1px solid #ebebeb;
-  display: flex; flex-direction: column;
+#appMenuAccordion {
+  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+  z-index: 1;
 }
-.sidebar-brand { padding: 1.25rem; border-bottom: 1px solid #ebebeb; }
-.brand-icon {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: #111; color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px; margin-bottom: 10px;
-}
-.sidebar-brand h4 { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
-.sidebar-brand small { font-size: 11px; color: #999; }
-.sidebar-nav { flex: 1; padding: 0.75rem; display: flex; flex-direction: column; gap: 2px; overflow-y: auto; }
-.nav-section { font-size: 10px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; color: #999; padding: 8px 8px 4px; }
-.nav-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 8px 10px; border-radius: 8px;
-  color: #666; cursor: pointer; text-decoration: none;
-  font-size: 13px; transition: background .12s;
-}
-.nav-item i { width: 16px; text-align: center; font-size: 13px; }
-.nav-item:hover, .nav-item.active { background: #f5f5f5; color: #111; }
-.nav-item.active { font-weight: 500; }
-.nav-badge {
-  margin-left: auto; font-size: 10px; font-weight: 500;
-  background: #ebebeb; color: #666;
-  padding: 1px 6px; border-radius: 99px;
-}
-.sidebar-footer { padding: 0.75rem; border-top: 1px solid #ebebeb; }
-.user-row {
-  display: flex; align-items: center; gap: 10px;
-  padding: 8px 10px; border-radius: 8px; cursor: pointer;
-}
-.user-row:hover { background: #f5f5f5; }
-.avatar {
-  width: 30px; height: 30px; border-radius: 50%;
-  background: #ebebeb; display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 500; color: #666; flex-shrink: 0;
-}
-.user-info p { font-size: 12px; font-weight: 500; color: #111; }
-.user-info span { font-size: 11px; color: #999; }
 
-/* MAIN */
-.main-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+/* Section card */
+#appMenuAccordion .card {
+  background: transparent !important;
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: none !important;
+}
 
-/* TOPBAR */
-.topbar {
-  height: 56px; min-height: 56px;
-  background: #fff; border-bottom: 1px solid #ebebeb;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 1.25rem; gap: 12px;
+/* Section header */
+#appMenuAccordion .card-header {
+  background: transparent !important;
+  border: none !important;
+  padding: 2px 0;
 }
-.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #999; }
-.breadcrumb i { font-size: 10px; }
-.breadcrumb b { color: #111; font-weight: 500; }
-.topbar-right { display: flex; align-items: center; gap: 8px; }
-.search-bar {
-  display: flex; align-items: center; gap: 8px;
-  background: #f5f5f5; border: 1px solid #e5e5e5;
-  border-radius: 8px; padding: 0 10px; height: 32px; width: 180px;
-}
-.search-bar i { font-size: 12px; color: #aaa; }
-.search-bar input { border: none; background: transparent; outline: none; font-size: 12px; width: 100%; }
-.icon-btn {
-  width: 32px; height: 32px; border-radius: 8px;
-  border: 1px solid #e5e5e5; background: transparent;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; color: #666; font-size: 13px;
-}
-.icon-btn:hover { background: #f5f5f5; color: #111; }
 
+/* Category label button */
+#appMenuAccordion .card-header .btn-link {
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  padding: 8px 12px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  box-shadow: none !important;
+}
+
+#appMenuAccordion .card-header .btn-link i {
+  font-size: 14px;
+  width: 16px;
+  text-align: center;
+  opacity: 0.65;
+  transition: var(--transition);
+}
+
+#appMenuAccordion .card-header .btn-link:hover {
+  color: rgba(255, 255, 255, 0.85) !important;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+#appMenuAccordion .card-header .btn-link:hover i {
+  opacity: 1;
+}
+
+/* Collapse area */
+#appMenuAccordion .collapse .card,
+#appMenuAccordion .collapsing .card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* Sub-menu list */
+#appMenuAccordion .list-group {
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Sub-menu item */
+#appMenuAccordion .list-group-item {
+  background: transparent !important;
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.68);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+#appMenuAccordion .list-group-item:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #FFFFFF;
+  transform: translateX(3px);
+}
+
+/* Link inside item */
+#appMenuAccordion .list-group-item a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit !important;
+  text-decoration: none;
+}
+
+#appMenuAccordion .list-group-item a i {
+  font-size: 14px;
+  width: 16px;
+  text-align: center;
+  opacity: 0.72;
+  transition: var(--transition);
+}
+
+#appMenuAccordion .list-group-item:hover a i {
+  opacity: 1;
+}
+
+/* Active item */
+#appMenuAccordion .list-group-item.text-white.bg-primary {
+  background: rgba(255, 255, 255, 0.18) !important;
+  color: #FFFFFF !important;
+  font-weight: 600;
+  border-left: 3px solid rgba(255, 255, 255, 0.88) !important;
+  padding-left: 11px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* Section separator */
+#appMenuAccordion > .card + .card {
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
+/* ============================================
+   CONTENT AREA (router-outlet wrapper)
+   ============================================ */
+
+.card.mb-2:has(router-outlet) {
+  padding: 24px !important;
+}
+
+router-outlet + * {
+  display: block;
+  animation: fadeInPage 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,4 +1,89 @@
+/* Container */
 .my-container {
-  margin-top: 200px;
-  max-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+/* Card */
+.card {
+  width: 100%;
+  max-width: 400px;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+/* Header */
+.card-header {
+  padding: 2rem 2rem 1.5rem;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #111;
+}
+
+/* Body */
+.card-body {
+  padding: 1.75rem 2rem 2rem;
+  background: #fff;
+}
+
+/* Inputs */
+.form-control {
+  height: 40px;
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background: #f8f8f8;
+  font-size: 14px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-control:focus {
+  border-color: #185fa5;
+  box-shadow: 0 0 0 3px rgba(24, 95, 165, 0.1);
+  background: #fff;
+  outline: none;
+}
+
+/* Bouton principal */
+.btn-primary {
+  background: #e6f1fb;
+  color: #185fa5;
+  border: 0.5px solid #b5d4f4;
+  border-radius: 8px;
+  padding: 0 18px;
+  height: 38px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.15s;
+}
+
+.btn-primary:hover { opacity: 0.85; }
+.btn-primary:active { transform: scale(0.98); }
+
+/* Lien d'inscription */
+.btn-link {
+  font-size: 13px;
+  color: #185fa5;
+  text-decoration: none;
+  padding: 0;
+}
+
+.btn-link:hover { text-decoration: underline; }
+
+/* Alerte */
+.alert-danger {
+  border-radius: 8px;
+  font-size: 13px;
+  padding: 10px 14px;
+  border: 0.5px solid #f09595;
 }

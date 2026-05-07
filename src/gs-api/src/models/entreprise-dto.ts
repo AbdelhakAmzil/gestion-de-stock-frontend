@@ -5,6 +5,7 @@ export interface EntrepriseDto {
   nom?: string;
   description?: string;
   adresse?: AdresseDto;
+  password?:String;
   codeFiscal?: string;
   photo?: string;
   email?: string;
