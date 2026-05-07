@@ -1,29 +1,50 @@
-<div class="col">
-  <div class="row m-3">
-    <div class="col-md-8 p-0">
-      <h1>Liste des articles</h1>
+<div class="articles-page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Liste des articles</h1>
+      <p class="page-subtitle">{{ listArticle.length }} articles au total</p>
     </div>
-    <div class="col-md-4 text-right">
-      <app-boutton-action
-        (clickEvent)="nouvelArticle()"
-      ></app-boutton-action>
-    </div>
-    <div class="alert alert-danger" *ngIf="errorMsg">
-      {{ errorMsg }}
+    <button class="btn-add" (click)="nouvelArticle()">
+      <i class="fas fa-plus"></i>
+      Nouvel article
+    </button>
+  </div>
+
+  <!-- Erreur -->
+  <div class="alert-err" *ngIf="errorMsg">
+    <i class="fas fa-exclamation-circle"></i>
+    <span>{{ errorMsg }}</span>
+  </div>
+
+  <!-- Barre de recherche -->
+  <div class="filter-bar">
+    <div class="search-wrap">
+      <i class="fas fa-search"></i>
+      <input class="search-input" type="text" placeholder="Rechercher un article..." />
     </div>
   </div>
-  <div class="col m-3">
+
+  <!-- Liste des articles -->
+  <div class="table-wrap">
+    <div class="table-head">
+      <span>Article</span>
+      <span>Catégorie</span>
+      <span>Prix unitaire</span>
+      <span>Stock</span>
+      <span></span>
+    </div>
     <app-details-articles
       *ngFor="let article of listArticle"
       [articleDto]="article"
-      (suppressionResult)="handleSuppression($event)"
-    >
+      (suppressionResult)="handleSuppression($event)">
     </app-details-articles>
   </div>
-  <div class="row mb-3" *ngIf="listArticle.length">
-    <div class=" col-md-12 text-center">
-      <app-pagination></app-pagination>
-    </div>
+
+  <!-- Pagination -->
+  <div class="pagination-wrap" *ngIf="listArticle.length">
+    <app-pagination></app-pagination>
   </div>
 
 </div>

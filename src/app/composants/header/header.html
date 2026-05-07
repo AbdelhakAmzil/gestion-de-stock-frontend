@@ -1,23 +1,47 @@
-<div class="row">
-  <div class="col-md-8">
-    <div class="input-group flex-nowrap">
-      <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="row">
-      <div class="col-md-9 text-right">
-        <span>Bonjour {{connectedUser.nom}}&nbsp;</span>
-      </div>
+<header class="app-header">
 
-      <div class="col-md-3">
-        <a href="javascript:void(0);" [routerLink]="['/profil']">
-          <img src="favicon.ico" class="rounded-circle" />
-        </a>
-      </div>
-    </div>
+  <!-- Recherche -->
+  <div class="search-wrap">
+    <i class="fas fa-search search-icon"></i>
+    <input type="text" class="search-input" placeholder="Rechercher..." />
+    <span class="search-kbd">⌘K</span>
   </div>
-</div>
+
+  <div class="spacer"></div>
+
+  <!-- Zone droite -->
+  <div class="header-right">
+
+    <!-- Notifications -->
+    <button class="icon-btn" title="Notifications">
+      <i class="fas fa-bell"></i>
+      <span class="notif-dot"></span>
+    </button>
+
+    <!-- Paramètres -->
+    <button class="icon-btn" title="Paramètres">
+      <i class="fas fa-cog"></i>
+    </button>
+
+    <div class="header-divider"></div>
+
+    <!-- Profil utilisateur -->
+    <a class="user-block" [routerLink]="['/profil']">
+      <div class="avatar">
+        <img *ngIf="connectedUser.photo"
+             [src]="connectedUser.photo"
+             [alt]="connectedUser.nom" />
+        <span *ngIf="!connectedUser.photo" class="avatar-initials">
+          {{ connectedUser.nom | slice:0:1 }}{{ connectedUser.prenom | slice:0:1 }}
+        </span>
+        <span class="online-dot"></span>
+      </div>
+      <div class="user-info">
+        <span class="user-greet">Bonjour 👋</span>
+        <span class="user-name">{{ connectedUser.nom }}</span>
+      </div>
+      <i class="fas fa-chevron-down user-chevron"></i>
+    </a>
+
+  </div>
+</header>

@@ -1,161 +1,167 @@
-/* ============================================
-   MENU COMPONENT - Modern Accordion Navigation
-   ============================================ */
-
-#appMenuAccordion {
-  padding: 16px 10px;
+/* ===== Sidebar container ===== */
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  background: #0f172a;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  position: relative;
-  z-index: 1;
+  overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
 }
 
-/* Section card */
-#appMenuAccordion .card {
-  background: transparent !important;
-  border: none !important;
-  border-radius: var(--radius-sm) !important;
-  box-shadow: none !important;
+/* ===== Brand / logo ===== */
+.sidebar-brand {
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.sidebar-brand .brand-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #f8fafc;
+  letter-spacing: 0.3px;
+}
+.sidebar-brand .brand-version {
+  display: block;
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
 }
 
-/* Section header */
-#appMenuAccordion .card-header {
-  background: transparent !important;
-  border: none !important;
-  padding: 2px 0;
+/* ===== Scrollable nav ===== */
+.menu-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px 5px;
+  scrollbar-width: none;
+}
+.menu-list::-webkit-scrollbar { display: none; }
+
+/* ===== Menu group (accordion item) ===== */
+.menu-group {
+  margin-bottom: 1px;
 }
 
-/* Category label button */
-#appMenuAccordion .card-header .btn-link {
-  color: rgba(255, 255, 255, 0.5) !important;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  text-decoration: none !important;
-  padding: 8px 12px;
+/* ===== Parent menu button ===== */
+.menu-btn {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
-  border-radius: var(--radius-sm);
-  transition: var(--transition);
-  box-shadow: none !important;
+  gap: 7px;
+  padding: 7px 9px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #94a3b8;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
 }
-
-#appMenuAccordion .card-header .btn-link i {
+/* icône gauche — taille fixe */
+.menu-btn .micon {
   font-size: 14px;
   width: 16px;
+  flex-shrink: 0;
   text-align: center;
-  opacity: 0.65;
-  transition: var(--transition);
 }
 
-#appMenuAccordion .card-header .btn-link:hover {
-  color: rgba(255, 255, 255, 0.85) !important;
-  background: rgba(255, 255, 255, 0.07);
+/* label — prend tout l'espace du milieu */
+.menu-btn .mlabel {
+  flex: 1;               /* ← pousse la flèche tout à droite */
+  /*white-space: nowrap;*/
+  /*overflow: hidden;*/
+  /*text-overflow: ellipsis;*/
 }
-
-#appMenuAccordion .card-header .btn-link:hover i {
+.menu-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+}
+/* Parent ouvert — indigo */
+.menu-btn.open {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+}
+/*.menu-btn i {*/
+/*  font-size: 16px;*/
+/*  width: 18px;*/
+/*  flex-shrink: 0;*/
+/*}*/
+.menu-btn .chevron {
+  flex-shrink: 0;
+  /*margin-left: auto;*/
+  font-size: 10px;
+  color: #475569;
+  opacity: 0.5;
+  transition: transform 0.25s, opacity 0.25s;
+  display: inline-block !important;
+}
+.menu-btn.open .chevron {
+  transform: rotate(180deg);
   opacity: 1;
+  color: #a5b4fc;
 }
 
-/* Collapse area */
-#appMenuAccordion .collapse .card,
-#appMenuAccordion .collapsing .card {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  margin: 0;
-  padding: 0;
+/* ===== Submenu collapse ===== */
+.sub-menu {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+.sub-menu.open {
+  max-height: 400px;
 }
 
-/* Sub-menu list */
-#appMenuAccordion .list-group {
-  padding: 4px 6px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-/* Sub-menu item */
-#appMenuAccordion .list-group-item {
-  background: transparent !important;
-  border: none !important;
-  border-radius: var(--radius-sm) !important;
-  padding: 10px 14px;
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.68);
-  transition: var(--transition);
-  cursor: pointer;
-}
-
-#appMenuAccordion .list-group-item:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: #FFFFFF;
-  transform: translateX(3px);
-}
-
-/* Link inside item */
-#appMenuAccordion .list-group-item a {
+/* ===== Submenu items ===== */
+.sub-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: inherit !important;
-  text-decoration: none;
+  gap: 7px;
+  padding: 5px 8px 5px 30px;
+  border-radius: 7px;
+  color: #64748b;
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  margin: 1px 0;
+  position: relative;
+  border-left: 2px solid transparent;
+  margin-left: 4px;
+  padding-left: 40px;
 }
-
-#appMenuAccordion .list-group-item a i {
-  font-size: 14px;
-  width: 16px;
-  text-align: center;
-  opacity: 0.72;
-  transition: var(--transition);
+.sub-item::before {
+  content: '';
+  position: absolute;
+  left: 18px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.35;
+  transition: opacity 0.15s;
 }
+.sub-item:hover {
+  color: #7dd3fc; background: rgba(56, 189, 248, 0.07);
+}
+.sub-item:hover::before { opacity: 0.8; }
 
-#appMenuAccordion .list-group-item:hover a i {
+.sub-item.active {
+  color: #38bdf8; background: rgba(56, 189, 248, 0.12);
+  font-weight: 500; border-left: 2px solid #0ea5e9;
+}
+.sub-item.active::before {
   opacity: 1;
+  background: #6366f1;
+}
+.sub-item i {
+  font-size: 14px;
+  opacity: 0.75;
 }
 
-/* Active item */
-#appMenuAccordion .list-group-item.text-white.bg-primary {
-  background: rgba(255, 255, 255, 0.18) !important;
-  color: #FFFFFF !important;
-  font-weight: 600;
-  border-left: 3px solid rgba(255, 255, 255, 0.88) !important;
-  padding-left: 11px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
-}
-
-/* Section separator */
-#appMenuAccordion > .card + .card {
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-  padding-top: 8px;
-  margin-top: 8px;
-}
-
-/* ============================================
-   CONTENT AREA (router-outlet wrapper)
-   ============================================ */
-
-.card.mb-2:has(router-outlet) {
-  padding: 24px !important;
-}
-
-router-outlet + * {
-  display: block;
-  animation: fadeInPage 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes fadeInPage {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ===== Divider ===== */
+.menu-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  margin: 8px 4px;
 }
