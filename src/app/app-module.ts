@@ -1,14 +1,19 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // ✅ ajouter
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing-module';
+import { ApiModule } from '../gs-api/src/api.module'; // ✅ ajouter
+import { HttpInterceptorService } from './services/interceptor/http-interceptor.service'; // ✅ ajouter — vérifiez le chemin exact
+
 import { App } from './app';
 import { PageLogin } from './pages/page-login/page-login';
 import { PageInscription } from './pages/page-inscription/page-inscription';
 import { PageDashboard } from './pages/page-dashboard/page-dashboard';
 import { PageStatistiques } from './pages/page-statistiques/page-statistiques';
 import { Menu } from './composants/menu/menu';
-import { CommonModule } from '@angular/common';
 import { Header } from './composants/header/header';
 import { PageArticles } from './pages/articles/page-articles/page-articles';
 import { DetailsArticles } from './composants/details-articles/details-articles';
@@ -21,7 +26,6 @@ import { DetailMvtStkArticle } from './composants/detail-mvt-stk-article/detail-
 import { DetailMvtStk } from './composants/detail-mvt-stk/detail-mvt-stk';
 import { DetailUtilisateur } from './composants/detail-utilisateur/detail-utilisateur';
 import { NouveauCltFrs } from './composants/nouveau-clt-frs/nouveau-clt-frs';
-import { FormsModule } from '@angular/forms';
 import { NouveauCmdCltFrs } from './composants/nouveau-cmd-clt-frs/nouveau-cmd-clt-frs';
 import { Pagination } from './composants/pagination/pagination';
 import { NouvelArticle } from './pages/articles/nouvel-article/nouvel-article';
@@ -70,8 +74,22 @@ import { PageUtilisateur } from './pages/utilisateur/page-utilisateur/page-utili
     NouvelUtilisateur,
     PageUtilisateur,
   ],
-  imports: [BrowserModule, AppRoutingModule, CommonModule, FormsModule],
-  providers: [provideBrowserGlobalErrorListeners()],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    CommonModule,
+    FormsModule,
+    HttpClientModule, // ✅
+    ApiModule.forRoot({ rootUrl: 'http://localhost:8081' }), // ✅
+  ],
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService, // ✅
+      multi: true,
+    },
+  ],
   bootstrap: [App],
 })
 export class AppModule {}

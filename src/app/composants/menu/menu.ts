@@ -133,6 +133,6 @@ export class Menu implements OnInit {
     }
     menu.active = true;
     this.lastSelectedMenu = menu;
-    this.router.navigate([menu.url]);
+    this.router.navigate(['dashboard', menu.url]);
   }
 }

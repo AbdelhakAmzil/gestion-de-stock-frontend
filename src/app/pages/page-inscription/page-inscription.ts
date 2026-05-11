@@ -16,6 +16,7 @@ export class PageInscription implements OnInit {
   entrepriseDto: EntrepriseDto = {};
   adresse: AdresseDto = {};
   errorsMsg: Array<string> = [];
+  confirmPassword: string = ''; // ✅ champ séparé pour confirmation
 
   constructor(
     private entrepriseService: EntrepriseService,
@@ -26,13 +27,24 @@ export class PageInscription implements OnInit {
   ngOnInit(): void {}
 
   inscrire(): void {
+    // ✅ Validation confirmation mot de passe
+    if (!this.entrepriseDto.password) {
+      this.errorsMsg = ['Le mot de passe est obligatoire'];
+      return;
+    }
+    if (this.entrepriseDto.password !== this.confirmPassword) {
+      this.errorsMsg = ['Les mots de passe ne correspondent pas'];
+      return;
+    }
+
+    this.errorsMsg = [];
     this.entrepriseDto.adresse = this.adresse;
     this.entrepriseService.sinscrire(this.entrepriseDto).subscribe(
       (entrepriseDto) => {
         this.connectEntreprise();
       },
       (error) => {
-        this.errorsMsg = error.error.errors;
+        this.errorsMsg = error.error.errors ?? ['Une erreur est survenue'];
       },
     );
   }
@@ -40,13 +52,15 @@ export class PageInscription implements OnInit {
   connectEntreprise(): void {
     const authenticationRequest: AuthenticationRequest = {
       login: this.entrepriseDto.email,
-      password: 'som3R@nd0mP@$$word',
+      //password: 'som3R@nd0mP@$$word',  // ✅ intentionnel — backend génère ce mot de
+      password: this.entrepriseDto.password as string, // ✅ mot de passe réel
     };
     this.userService.login(authenticationRequest).subscribe((response) => {
       this.userService.setAccessToken(response);
-      this.getUserByEmail(authenticationRequest.login);
-      localStorage.setItem('origin', 'inscription');
-      this.router.navigate(['changermotdepasse']);
+      this.router.navigate(['dashboard']);
+      //this.getUserByEmail(authenticationRequest.login);
+      //localStorage.setItem('origin', 'inscription');
+      //this.router.navigate(['changermotdepasse']);
     });
   }
 

@@ -25,8 +25,10 @@ export class PageLogin implements OnInit {
     this.userService.login(this.authenticationRequest).subscribe(
       (data) => {
         this.userService.setAccessToken(data);
-        this.getUserByEmail();
-        this.router.navigate(['']);
+        //this.getUserByEmail();
+        this.router.navigate(['dashboard']); // ✅ rediriger immédiatement
+        //this.getUserByEmail();
+        //entreprise@email.com / som3R@nd0mP@$$word
       },
       (error) => {
         this.errorMessage = 'Login et / ou mot de passe incorrecte';
@@ -35,8 +37,13 @@ export class PageLogin implements OnInit {
   }
 
   getUserByEmail(): void {
-    this.userService.getUserByEmail(this.authenticationRequest.login).subscribe((user) => {
-      this.userService.setConnectedUser(user);
-    });
+    this.userService.getUserByEmail(this.authenticationRequest.login).subscribe(
+      (user) => {
+        this.userService.setConnectedUser(user);
+      },
+      (error) => {
+        console.warn('getUserByEmail échoué, on continue quand même');
+      }
+    );
   }
 }

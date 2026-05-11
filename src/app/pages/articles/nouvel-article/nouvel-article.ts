@@ -38,17 +38,17 @@ export class NouvelArticle implements OnInit {
     if (idArticle) {
       this.articleService.findArticleById(idArticle).subscribe((article) => {
         this.articleDto = article;
-        this.categorieDto = this.articleDto.category ? this.articleDto.category : {};
+        //this.categorieDto = this.articleDto.category ? this.articleDto.category : {};
       });
     }
   }
 
   cancel(): void {
-    this.router.navigate(['articles']);
+    this.router.navigate(['dashboard', 'articles']);
   }
 
   enregistrerArticle(): void {
-    this.articleDto.category = this.categorieDto;
+    //this.articleDto.category = this.categorieDto;
     this.articleService.enregistrerArticle(this.articleDto).subscribe(
       (art) => {
         this.savePhoto(art.id, art.codeArticle);
@@ -92,10 +92,13 @@ export class NouvelArticle implements OnInit {
         context: 'article',
       };
       this.photoService.savePhoto(params).subscribe((res) => {
-        this.router.navigate(['articles']);
+        this.router.navigate(['dashboard', 'articles']);
       });
     } else {
-      this.router.navigate(['articles']);
+      this.router.navigate(['dashboard', 'articles']);
     }
   }
+
 }
+
+

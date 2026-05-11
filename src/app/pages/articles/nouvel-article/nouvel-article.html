@@ -42,9 +42,9 @@
             <input type="text" class="form-control" name="prixunitttc" placeholder="Prix unitaire TTC"  [(ngModel)]="articleDto.prixUnitaireTtc">
           </div>
           <div class="col">
-            <select class="form-control" name="cat" [(ngModel)]="categorieDto.id">
+            <select class="form-control" name="cat" [(ngModel)]="articleDto.category">
               <option [value]="null">Selectionner une categorie</option>
-              <option *ngFor="let cat of listeCategorie" [value]="cat.id">{{ cat.code }} - {{ cat.designation }}</option>
+              <option *ngFor="let cat of listeCategorie" [ngValue]="cat">{{ cat.code }} - {{ cat.designation }}</option>
             </select>
           </div>
         </div>

@@ -23,7 +23,7 @@ export class DetailsArticles implements OnInit {
   ngOnInit(): void {}
 
   modifierArticle(): void {
-    this.router.navigate(['nouvelarticle', this.articleDto.id]);
+    this.router.navigate(['dashboard', 'nouvelarticle', this.articleDto.id]);
   }
 
   confirmerEtSupprimerArticle(): void {

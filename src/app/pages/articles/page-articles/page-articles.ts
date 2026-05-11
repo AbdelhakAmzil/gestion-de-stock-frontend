@@ -30,7 +30,7 @@ export class PageArticles implements OnInit {
   }
 
   nouvelArticle(): void {
-    this.router.navigate(['nouvelarticle']);
+    this.router.navigate(['dashboard', 'nouvelarticle']);
   }
 
   handleSuppression(event: any): void {
