@@ -36,26 +36,57 @@
     <button class="act-btn edit" (click)="modifierArticle()">
       <i class="fas fa-pencil-alt"></i> Modifier
     </button>
+    <!-- Bouton supprimer -->
     <button class="act-btn del"
-            [attr.data-target]="'#modal' + articleDto.id"
-            data-toggle="modal">
+            [attr.data-bs-target]="'#modal' + articleDto.id"
+            data-bs-toggle="modal">
       <i class="fas fa-trash-alt"></i> Supprimer
     </button>
-    <button class="act-btn view">
+    <button class="act-btn view" (click)="toggleDetails()">  <!-- ✅ -->
       <i class="far fa-list-alt"></i> Détails
     </button>
   </div>
 
 </div>
 
-<!-- Modal confirmation suppression -->
+<!-- ✅ Section détails -->
+<div class="art-details" *ngIf="showDetails">
+  <div class="details-grid">
+    <div class="detail-item">
+      <span class="detail-label">Code article</span>
+      <span class="detail-val">{{ articleDto.codeArticle }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Désignation</span>
+      <span class="detail-val">{{ articleDto.designation }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Prix HT</span>
+      <span class="detail-val">{{ articleDto.prixUnitaireHt }} €</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Taux TVA</span>
+      <span class="detail-val">{{ articleDto.tauxTva }} %</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Prix TTC</span>
+      <span class="detail-val">{{ articleDto.prixUnitaireTtc }} €</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Catégorie</span>
+      <span class="detail-val">{{ articleDto.category?.designation }}</span>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
 <div class="modal fade" [id]="'modal' + articleDto.id"
-     data-backdrop="static" tabindex="-1">
+     data-bs-backdrop="static" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content custom-modal">
       <div class="modal-header">
         <h5>Confirmation de suppression</h5>
-        <button class="modal-close" data-dismiss="modal">✕</button>
+        <button class="modal-close" data-bs-dismiss="modal">✕</button>
       </div>
       <div class="modal-body">
         Êtes-vous sûr de vouloir supprimer l'article
@@ -63,10 +94,10 @@
         Cette action est irréversible.
       </div>
       <div class="modal-footer">
-        <button class="btn-cancel" data-dismiss="modal">
+        <button class="btn-cancel" data-bs-dismiss="modal">
           <i class="fas fa-ban"></i> Annuler
         </button>
-        <button class="btn-danger" data-dismiss="modal"
+        <button class="btn-danger" data-bs-dismiss="modal"
                 (click)="confirmerEtSupprimerArticle()">
           <i class="fas fa-trash-alt"></i> Supprimer
         </button>

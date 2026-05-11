@@ -1,62 +1,65 @@
-<div class="col">
-  <div class="row m-3">
-    <div class="col-md-8 p-0">
-      <h1>Mouvements du stock</h1>
-    </div>
-    <div class="col-md-4 p-0 text-right">
-      <app-boutton-action
-        [isImporterVisible]="false"
-        [isNouveauVisible]="false"
-      ></app-boutton-action>
-    </div>
+<div class="mvtstk-page">
+
+  <div class="page-header">
+    <h1 class="page-title">Mouvements du stock</h1>
+    <button class="btn-export">
+      <i class="fas fa-cloud-upload-alt"></i> Exporter
+    </button>
   </div>
-  <div class="col">
-    <div class="accordion" id="mvtStkDetails">
-      <div class="card">
-        <div class="card-body" id="headingOne">
-          <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            <app-detail-mvt-stk-article></app-detail-mvt-stk-article>
-          </button>
+
+  <div class="accordion" id="mvtStkAccordion">
+    <div class="mvt-card" *ngFor="let article of listArticles; let i = index">
+
+      <!-- Header article -->
+      <div class="mvt-header"
+           [attr.data-bs-toggle]="'collapse'"
+           [attr.data-bs-target]="'#collapse' + i">
+        <div class="mvt-art-info">
+          <img [src]="article.photo || 'assets/product.png'" class="mvt-img" />
+          <div>
+            <span class="mvt-code">{{ article.codeArticle }}</span>
+            <span class="mvt-name">{{ article.designation }}</span>
+            <div class="mvt-prices">
+              <span>Prix HT : <b>{{ article.prixUnitaireHt }} €</b></span>
+              <span>Prix TTC : <b>{{ article.prixUnitaireTtc }} €</b></span>
+            </div>
+          </div>
         </div>
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#mvtStkDetails" style="max-height: 300px;
-        overflow-y: scroll">
-          <div class="card-body">
-            <app-detail-mvt-stk></app-detail-mvt-stk>
-            <app-detail-mvt-stk></app-detail-mvt-stk>
-            <app-detail-mvt-stk></app-detail-mvt-stk>
-            <app-detail-mvt-stk></app-detail-mvt-stk>
-            <app-detail-mvt-stk></app-detail-mvt-stk>
-            <app-detail-mvt-stk></app-detail-mvt-stk>
-            <app-detail-mvt-stk></app-detail-mvt-stk>
+        <div class="mvt-stock">
+          <span class="stock-label">Stock actuel</span>
+          <span class="stock-val">{{ article.id ? getStock(article.id) : 0 }}</span>
+        </div>
+        <div class="mvt-action">
+          <a class="correction-link">
+            <i class="fas fa-edit"></i> Correction de stock
+          </a>
+        </div>
+      </div>
+
+      <!-- Détails mouvements -->
+      <div [id]="'collapse' + i" class="collapse mvt-body"
+           [attr.data-bs-parent]="'#mvtStkAccordion'">
+        <div class="mvt-list">
+          <div class="mvt-list-head">
+            <span>Date</span>
+            <span>Type</span>
+            <span>Quantité</span>
+            <span>Source</span>
+          </div>
+          <div class="mvt-row" *ngFor="let mvt of article.id ? getMvts(article.id) : []">
+            <span>{{ mvt.dateMvt | date:'dd/MM/yyyy' }}</span>
+            <span [class]="mvt.typeMvt === 'ENTREE' ? 'badge-entree' : 'badge-sortie'">
+              {{ mvt.typeMvt }}
+            </span>
+            <span>{{ mvt.quantite }}</span>
+            <span>{{ mvt.sourceMvt }}</span>
+          </div>
+          <div class="mvt-empty" *ngIf="(article.id ? getMvts(article.id) : []).length === 0">
+            Aucun mouvement enregistré
           </div>
         </div>
       </div>
-      <!-- +++++++++++++ -->
-      <div class="card">
-        <div class="card-body" id="headingOne1">
-          <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                  aria-controls="collapseOne">
-            <app-detail-mvt-stk-article></app-detail-mvt-stk-article>
-          </button>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#mvtStkDetails" style="max-height: 300px;
-        overflow-y: scroll">
-          <div class="card-body">
-            <app-detail-mvt-stk></app-detail-mvt-stk>
-            <app-detail-mvt-stk></app-detail-mvt-stk>
-            <app-detail-mvt-stk></app-detail-mvt-stk>
-            <app-detail-mvt-stk></app-detail-mvt-stk>
-            <app-detail-mvt-stk></app-detail-mvt-stk>
-            <app-detail-mvt-stk></app-detail-mvt-stk>
-            <app-detail-mvt-stk></app-detail-mvt-stk>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <div class=" col-md-12 text-center">
-      <app-pagination></app-pagination>
+
     </div>
   </div>
 

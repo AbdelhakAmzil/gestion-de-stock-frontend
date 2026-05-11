@@ -25,8 +25,13 @@ export class PageLogin implements OnInit {
     this.userService.login(this.authenticationRequest).subscribe(
       (data) => {
         this.userService.setAccessToken(data);
+        setTimeout(() => {
+          this.getUserByEmail();
+        }, 100);
+        this.router.navigate(['dashboard']);
+        //this.userService.setAccessToken(data);
         //this.getUserByEmail();
-        this.router.navigate(['dashboard']); // ✅ rediriger immédiatement
+        //this.router.navigate(['dashboard']); // ✅ rediriger immédiatement
         //this.getUserByEmail();
         //entreprise@email.com / som3R@nd0mP@$$word
       },

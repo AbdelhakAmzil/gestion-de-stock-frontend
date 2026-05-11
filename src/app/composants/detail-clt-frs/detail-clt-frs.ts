@@ -26,9 +26,9 @@ export class DetailCltFrs implements OnInit {
 
   modifierClientFournisseur(): void {
     if (this.origin === 'client') {
-      this.router.navigate(['nouveauclient', this.clientFournisseur.id]);
+      this.router.navigate(['dashboard', 'nouveauclient', this.clientFournisseur.id]); // ✅
     } else if (this.origin === 'fournisseur') {
-      this.router.navigate(['nouveaufournisseur', this.clientFournisseur.id]);
+      this.router.navigate(['dashboard', 'nouveaufournisseur', this.clientFournisseur.id]); // ✅
     }
   }
 
@@ -52,5 +52,11 @@ export class DetailCltFrs implements OnInit {
         },
       );
     }
+  }
+
+  showDetails = false;
+
+  toggleDetails(): void {
+    this.showDetails = !this.showDetails;
   }
 }

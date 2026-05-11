@@ -4,7 +4,7 @@
   <div class="page-header">
     <div>
       <h1 class="page-title">Liste des articles</h1>
-      <p class="page-subtitle">{{ listArticle.length }} articles au total</p>
+      <p class="page-subtitle">{{ listArticleFiltree.length }} articles au total</p>
     </div>
     <button class="btn-add" (click)="nouvelArticle()">
       <i class="fas fa-plus"></i>
@@ -22,7 +22,9 @@
   <div class="filter-bar">
     <div class="search-wrap">
       <i class="fas fa-search"></i>
-      <input class="search-input" type="text" placeholder="Rechercher un article..." />
+      <input class="search-input" type="text"
+             placeholder="Rechercher un article..."
+             (input)="rechercherArticle($event)" />
     </div>
   </div>
 
@@ -36,14 +38,14 @@
       <span></span>
     </div>
     <app-details-articles
-      *ngFor="let article of listArticle"
+      *ngFor="let article of listArticleFiltree"
       [articleDto]="article"
-      (suppressionResult)="handleSuppression($event)">
+      (suppressionResult)="handleSuppression($event)" >
     </app-details-articles>
   </div>
 
   <!-- Pagination -->
-  <div class="pagination-wrap" *ngIf="listArticle.length">
+  <div class="pagination-wrap" *ngIf="listArticleFiltree.length">
     <app-pagination></app-pagination>
   </div>
 

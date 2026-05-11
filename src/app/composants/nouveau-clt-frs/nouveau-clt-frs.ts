@@ -79,15 +79,16 @@ export class NouveauCltFrs implements OnInit {
 
   cancelClick(): void {
     if (this.origin === 'client') {
-      this.router.navigate(['clients']);
+      this.router.navigate(['dashboard', 'clients']); // ✅
     } else if (this.origin === 'fournisseur') {
-      this.router.navigate(['fournisseurs']);
+      this.router.navigate(['dashboard', 'fournisseurs']); // ✅
     }
   }
 
   mapToClient(): ClientDto {
     const clientDto: ClientDto = this.clientFournisseur;
     clientDto.adresse = this.adresseDto;
+    clientDto.mail = this.clientFournisseur.email || this.clientFournisseur.mail; // ✅
     return clientDto;
   }
 

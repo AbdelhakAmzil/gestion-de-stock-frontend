@@ -1,86 +1,99 @@
-<div class="row mb-1 mr-0 custom-border">
-  <div class="col-md-1 custom-border-right p-1 text-center mb-1 mt-1 ">
-    <img [src]="clientFournisseur.photo ? clientFournisseur.photo : 'assets/product.png'" width="100px" height="100px">
+<!-- Carte principale -->
+<div class="clt-frs-row">
+
+  <!-- Image -->
+  <img [src]="clientFournisseur.photo || 'assets/product.png'" class="clt-img" />
+
+  <!-- Infos -->
+  <div class="clt-info">
+    <span class="clt-name">{{ clientFournisseur.nom }} {{ clientFournisseur.prenom }}</span>
+    <span class="clt-phone"><i class="fas fa-phone-alt"></i> {{ clientFournisseur.numTel }}</span>
+    <span class="clt-phone"><i class="fas fa-envelope"></i> {{ clientFournisseur.mail }}</span>
   </div>
 
-  <!--  Details article-->
-  <div class="col-md-5 custom-border-right mb-1 mt-1 ">
-    <div class="col">
-      <div class="row">
-        <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-        <div class="col-md-10">{{ clientFournisseur.nom }}</div>
-      </div>
-      <div class="row">
-        <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-        <div class="col-md-10">{{ clientFournisseur.prenom }}</div>
-      </div>
-      <div class="row">
-        <div class="col-md-1"><i class="fas fa-phone-alt blue-color"></i></div>
-        <div class="col-md-10">{{ clientFournisseur.numTel }}</div>
-      </div>
+  <!-- Adresse -->
+  <div class="clt-address">
+    <div class="addr-line">
+      <i class="fas fa-home"></i>
+      {{ clientFournisseur.adresse?.adresse1 }} {{ clientFournisseur.adresse?.adresse2 }}
+    </div>
+    <div class="addr-line">
+      <i class="fas fa-map-marker-alt"></i>
+      {{ clientFournisseur.adresse?.codePostale }} {{ clientFournisseur.adresse?.ville }}
+    </div>
+    <div class="addr-line">
+      <i class="fas fa-globe-europe"></i>
+      {{ clientFournisseur.adresse?.pays }}
     </div>
   </div>
 
-  <!--  details categorie-->
-  <div class="col-md-3 custom-border-right mb-1 mt-1 ">
-    <div class="col">
-      <div class="row">
-        <div class="col-md-1"><i class="fas fa-home blue-color"></i></div>
-        <div class="col-md-10">{{ clientFournisseur.adresse?.adresse1 }}&nbsp;{{ clientFournisseur.adresse?.adresse2 }}</div>
-      </div>
-      <div class="row">
-        <div class="col-md-1"><i class="fas fa-map-marker-alt blue-color"></i></div>
-        <div class="col-md-10">{{ clientFournisseur.adresse?.codePostale }}&nbsp;{{ clientFournisseur.adresse?.ville }}</div>
-      </div>
-      <div class="row">
-        <div class="col-md-1"><i class="fas fa-globe-europe blue-color"></i></div>
-        <div class="col-md-10">{{ clientFournisseur.adresse?.pays }}</div>
-      </div>
-    </div>
+  <!-- Actions -->
+  <div class="clt-actions">
+    <button class="act-btn edit" (click)="modifierClientFournisseur()">
+      <i class="fas fa-pencil-alt"></i> Modifier
+    </button>
+    <button class="act-btn del"
+            data-bs-toggle="modal"
+            [attr.data-bs-target]="'#modalDelete' + clientFournisseur.id">
+      <i class="fas fa-trash-alt"></i> Supprimer
+    </button>
+    <button class="act-btn view" (click)="toggleDetails()">
+      <i class="far fa-list-alt"></i> Détails
+    </button>
   </div>
 
-  <!--  boutons action-->
-  <div class="col-md-3 mb-1 mt-1 ">
-    <div class="row">
-      <div class="col-md-4">
-        <button type="button" class="btn btn-link" (click)="modifierClientFournisseur()">
-          <i class="fas fa-pencil-alt"></i>&nbsp;Modifier
-        </button>
-      </div>
-      <div class="col-md-4">
-        <button type="button" class="btn btn-link text-danger" data-toggle="modal" [attr.data-target]="'#modalDelete' + clientFournisseur.id">
-          <i class="fas fa-trash-alt"></i>&nbsp;Supprimer
-        </button>
-      </div>
-      <div class="col-md-4">
-        <button type="button" class="btn btn-link ">
-          <i class="far fa-list-alt"></i>&nbsp;Details
-        </button>
-      </div>
+</div>  <!-- ✅ fin clt-frs-row -->
+
+<!-- Panel détails -->
+<div class="clt-details" *ngIf="showDetails">
+  <div class="details-grid">
+    <div class="detail-item">
+      <span class="detail-label">Nom complet</span>
+      <span class="detail-val">{{ clientFournisseur.nom }} {{ clientFournisseur.prenom }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Email</span>
+      <span class="detail-val">{{ clientFournisseur.mail }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Téléphone</span>
+      <span class="detail-val">{{ clientFournisseur.numTel }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Adresse</span>
+      <span class="detail-val">{{ clientFournisseur.adresse?.adresse1 }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Ville</span>
+      <span class="detail-val">{{ clientFournisseur.adresse?.ville }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="detail-label">Pays</span>
+      <span class="detail-val">{{ clientFournisseur.adresse?.pays }}</span>
     </div>
   </div>
+</div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="modalDelete{{ clientFournisseur.id }}" data-backdrop="static" data-keyboard="false" tabindex="-1"
-       aria-labelledby="staticBackdropLabel"
-       aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Confirmation</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Etes vous-sur de vouloir supprimer ce {{ origin }}?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            <i class="fas fa-ban"></i>&nbsp;Annuler</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="confirmerEtSupprimer()">
-            <i class="fas fa-trash-alt"></i>&nbsp;Supprimer</button>
-        </div>
+<!-- Modal suppression -->
+<div class="modal fade" [id]="'modalDelete' + clientFournisseur.id"
+     data-bs-backdrop="static" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Êtes-vous sûr de vouloir supprimer ce {{ origin }} ?
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          <i class="fas fa-ban"></i> Annuler
+        </button>
+        <button class="btn btn-danger" data-bs-dismiss="modal"
+                (click)="confirmerEtSupprimer()">
+          <i class="fas fa-trash-alt"></i> Supprimer
+        </button>
       </div>
     </div>
   </div>

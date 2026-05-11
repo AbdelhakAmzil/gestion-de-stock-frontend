@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { CltfrsService } from '../../../services/cltfrs/cltfrs.service';
 import { ClientDto } from '../../../../gs-api/src/models/client-dto';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-page-client',
@@ -11,6 +12,7 @@ import { ClientDto } from '../../../../gs-api/src/models/client-dto';
 })
 export class PageClient implements OnInit {
   listClient: Array<ClientDto> = [];
+  listClientFiltree: Array<ClientDto> = [];
   errorMsg = '';
 
   constructor(
@@ -19,17 +21,42 @@ export class PageClient implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.findAllClients();
+    setTimeout(() => this.findAllClients(), 500);
+
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        filter((event: any) => event.urlAfterRedirects.includes('clients')),
+      )
+      .subscribe(() => {
+        this.findAllClients();
+      });
   }
 
   findAllClients(): void {
-    this.cltFrsService.findAllClients().subscribe((clients) => {
+    this.cltFrsService.findAllClients().subscribe((clients: ClientDto[]) => {
       this.listClient = clients;
+      this.listClientFiltree = clients;
     });
   }
 
+  rechercherClient(event: any): void {
+    const terme = event.target.value.toLowerCase();
+    if (!terme) {
+      this.listClientFiltree = this.listClient;
+    } else {
+      this.listClientFiltree = this.listClient.filter(
+        (client) =>
+          client.nom?.toLowerCase().includes(terme) ||
+          client.prenom?.toLowerCase().includes(terme) ||
+          client.mail?.toLowerCase().includes(terme) ||
+          client.numTel?.toLowerCase().includes(terme),
+      );
+    }
+  }
+
   nouveauClient(): void {
-    this.router.navigate(['nouveauclient']);
+    this.router.navigate(['dashboard', 'nouveauclient']);
   }
 
   handleSuppression(event: any): void {

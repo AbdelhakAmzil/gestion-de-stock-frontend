@@ -14,7 +14,14 @@ export class ArticleService {
   ) {}
 
   enregistrerArticle(articleDto: ArticleDto): Observable<ArticleDto> {
-    articleDto.idEntreprise = this.userService.getConnectedUser().entreprise?.id;
+    //articleDto.idEntreprise = this.userService.getConnectedUser().entreprise?.id;
+    const accessTokenJson = localStorage.getItem('accessToken');
+    if (accessTokenJson) {
+      const accessToken = JSON.parse(accessTokenJson);
+      // Décoder le token JWT pour extraire idEntreprise
+      const payload = JSON.parse(atob(accessToken.accessToken.split('.')[1]));
+      articleDto.idEntreprise = Number(payload.idEntreprise); // ✅ convertir en number
+    }
     return this.articleService.save(articleDto);
   }
 

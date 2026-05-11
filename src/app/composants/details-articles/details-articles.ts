@@ -38,4 +38,10 @@ export class DetailsArticles implements OnInit {
       );
     }
   }
+
+  showDetails = false;
+
+  toggleDetails(): void {
+    this.showDetails = !this.showDetails;
+  }
 }

@@ -17,12 +17,22 @@ export class CltfrsService {
   ) {}
 
   enregistrerClient(clientDto: ClientDto): Observable<ClientDto> {
-    clientDto.idEntreprise = this.userService.getConnectedUser().entreprise?.id;
+    const accessTokenJson = localStorage.getItem('accessToken');
+    if (accessTokenJson) {
+      const accessToken = JSON.parse(accessTokenJson);
+      const payload = JSON.parse(atob(accessToken.accessToken.split('.')[1]));
+      clientDto.idEntreprise = Number(payload.idEntreprise); // ✅
+    }
     return this.clientService.save(clientDto);
   }
 
   enregistrerFournisseur(fournisseurDto: FournisseurDto): Observable<FournisseurDto> {
-    fournisseurDto.idEntreprise = this.userService.getConnectedUser().entreprise?.id;
+    const accessTokenJson = localStorage.getItem('accessToken');
+    if (accessTokenJson) {
+      const accessToken = JSON.parse(accessTokenJson);
+      const payload = JSON.parse(atob(accessToken.accessToken.split('.')[1]));
+      fournisseurDto.idEntreprise = Number(payload.idEntreprise); // ✅
+    }
     return this.fournisseurService.save(fournisseurDto);
   }
 
